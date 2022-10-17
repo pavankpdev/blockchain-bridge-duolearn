@@ -15,7 +15,7 @@ contract PolyToken is ERC20, Ownable, IPolygonToken, Deposit {
         address user,
         bytes calldata depositData
     )
-        extrernal
+        external
         override
         onlyDepositAdmin
         whenNotPaused

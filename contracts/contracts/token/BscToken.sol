@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract BSCToken is ERC20, Ownable {
     constructor() ERC20("Duo Token", "DUO") {
-        uint supply = 1_000_000 ether;
+        uint supply = 10_000_000 ether;
         _mint(msg.sender, supply);
     }
 

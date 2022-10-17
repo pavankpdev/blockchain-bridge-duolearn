@@ -1,7 +1,7 @@
 pragma solidity 0.8.2;
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-import "@openzepplin/contracts/utils/cryptography/SignatureChecker.sol";
+import "@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol";
 
 import "../interface/IPolygonToken.sol";
 import "./Signer.sol";
@@ -27,8 +27,8 @@ contract PolyDeposit is ReentrancyGuard, Signer {
     function depositTokens(
         address user,
         uint256 amount,
-        string lockTxnHash,
-        bytes signature
+        string memory lockTxnHash,
+        bytes memory signature
     )
     external
     nonReentrant
@@ -40,7 +40,7 @@ contract PolyDeposit is ReentrancyGuard, Signer {
         );
 
         lockTxnHashes[lockTxnHash] = true;
-        bytes depositData = abi.encodePacked(amount);
+        bytes memory depositData = abi.encodePacked(amount);
         token.deposit(user, depositData);
         emit Deposit(user, amount, lockTxnHash);
     }

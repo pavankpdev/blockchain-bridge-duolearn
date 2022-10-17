@@ -1,7 +1,7 @@
 pragma solidity 0.8.2;
 
-import "@openzepplin/contracts/access/Ownable.sol";
-import "@openzepplin/contracts/utils/cryptography/SignatureChecker.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol";
 
 contract Signer is Ownable {
     address public approvedSigner;
@@ -34,14 +34,14 @@ contract Signer is Ownable {
         emit SetSigner(_signer);
     }
 
-    function onlyWithSignature(
+    modifier onlyWithSignature(
         address user,
         uint256 amount,
         string memory txHash,
         bytes memory signature
     ) {
-        byte32 verificationHash = keccak256(
-            abi.encode(txHasVerification(user, amount, txHash, domain, version))
+        bytes32 verificationHash = keccak256(
+            abi.encode(Verification(user, amount, txHash, domain, version))
         );
 
         require(
@@ -52,6 +52,8 @@ contract Signer is Ownable {
             ) == true,
             "Invalid signature"
         );
+
+        _;
 
     }
 
