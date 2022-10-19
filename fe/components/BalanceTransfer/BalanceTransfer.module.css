@@ -1,0 +1,46 @@
+.balanceTransferContainer {
+  display: flex;
+  gap: 6rem;
+  width: 100%;
+  align-items: center;
+  background-color: #def9f9;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.p {
+  margin: 0;
+}
+.balanceTransfer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.transferInput {
+  width: 50rem;
+  height: 4rem;
+  border-radius: 6px;
+  font-size: 40px;
+  padding: 0 10px;
+}
+
+.tranferBtnContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.transferBtn {
+  width: 50%;
+  padding: 2rem;
+  height: 6rem;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background: #7310f6;
+  font-weight: 800;
+  font-size: 3rem;
+  color: white;
+  border-radius: 8px;
+}
