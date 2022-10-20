@@ -20,6 +20,7 @@
   },
   "scripts": {
     "deploy:mumbai": "npx hardhat --network mumbai deploy",
+    "deploy:bsc_testnet": "npx hardhat --network bsc_testnet deploy",
     "test": "npx hardhat test"
   },
   "dependencies": {
