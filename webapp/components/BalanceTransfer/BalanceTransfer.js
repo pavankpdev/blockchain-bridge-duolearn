@@ -13,15 +13,22 @@ function BalanceTransfer(props) {
     try {
       await connectWallet();
       if (!account) return;
-      const BSCToken = getContractInstance("BSCToken");
-      console.log(BSCToken);
-      const balance = await BSCToken.balanceOf(`${account}`);
+      let balance = "0";
+
+      if (props.primaryChain === "BSC") {
+        const BSCToken = getContractInstance("BSCToken");
+        balance = await BSCToken.balanceOf(`${account}`);
+      } else {
+        const PolyToken = getContractInstance("PolyToken");
+        balance = await PolyToken.balanceOf(`${account}`);
+      }
+
       const balanceInWei = BigNumber.from(balance).toString();
       setBalance(ethers.utils.formatEther(balanceInWei));
     } catch (err) {
       console.log(err);
     }
-  }, [account]);
+  }, [account, props.primaryChain]);
 
   useEffect(() => {
     getBalance();
@@ -43,7 +50,7 @@ function BalanceTransfer(props) {
           style={{ display: "flex", width: "100%", justifyContent: "center" }}
         >
           <button onClick={props.onClick} className={styles.transferBtn}>
-            Transfer
+            {props.status === "TRANSFER" ? "Transfer" : "Deposit"}
           </button>
         </div>
       </div>
